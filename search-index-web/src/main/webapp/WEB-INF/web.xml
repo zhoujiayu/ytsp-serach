@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5"
+    metadata-complete="true">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- opensessioninview -->
+ 	<filter> 
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+		<!-- singleSession默认为true,若设为false则等于没用OpenSessionInView -->
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value> 
+		</init-param> 
+	</filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name> 
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+  
+   <!--  Spring 服务层的配置文件 -->  
+    <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>classpath*:/applicationContext.xml</param-value>  
+    </context-param>
+  
+    <listener>
+		<listener-class>
+			org.springframework.web.util.IntrospectorCleanupListener
+		</listener-class>
+	</listener>
+    <!--  Spring 容器启动监听器 -->  
+    <listener>  
+        <listener-class>org.springframework.web.context.ContextLoaderListener  
+        </listener-class>  
+    </listener> 
+    
+    <listener>
+            <listener-class>com.ikan.search.es.listener.DictionaryListener</listener-class>
+    </listener>
+    
+    	<!-- log4j -->
+	<context-param>   
+	 	<param-name>log4jConfigLocation</param-name>   
+	 	<param-value>classpath:/log4j.xml</param-value>  
+	</context-param>  
+	<listener>   
+	 	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>  
+	</listener>  
+	
+    
+</web-app>
+
+

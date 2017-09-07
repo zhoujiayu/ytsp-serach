@@ -1,0 +1,16 @@
+##修改数据库配置
+（1）修改db.properties配置文件，修改数据库地址
+测试数据库：
+boneCP.url=jdbc:mysql://172.16.218.87:3306/ytsp?useUnicode=true&amp;characterEncoding=UTF-8
+正式数据库：
+boneCP.url=jdbc:mysql://172.16.1.10:3306/ytsp?useUnicode=true&amp;characterEncoding=UTF-8
+
+##修改es搜索引擎配置
+（2）修改es.properties配置文件，
+正式的搜索引擎地址配置：
+es.hosts=172.16.2.39:9300;172.16.2.15:9300
+测试的搜索引擎地址配置：
+es.hosts=172.16.218.20:9300
+
+##修改索引类EsClient.java
+（3）修改EsClient.java类里的常量 INDEX
